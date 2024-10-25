@@ -11,20 +11,20 @@ contract AdministrarUsuarios{
     }
     mapping(address => Usuario) private listaUsuarios;
 //escribir cosas en la blockchain storage
-    function registrar(uint edad, string memory genero, string memory nombre, address usuario) public {
+    function registrar(uint edad, string memory genero, string memory nombre) public {
         //crea objeto 
-        Usuario storage _usuario = listaUsuarios[usuario];
+        Usuario storage _usuario = listaUsuarios[msg.sender];
         _usuario.edad = edad;
         _usuario.nombre = nombre;
         _usuario.genero = genero;
     }
 
-    function consultar(address usuario) public view  returns(Usuario memory){
-        return listaUsuarios[usuario];
+    function consultar() public view  returns(Usuario memory){
+        return listaUsuarios[msg.sender];
 
     }
 
-    function borrar(address usuario) public{
-        delete listaUsuarios[usuario];
+    function borrar() public{
+        delete listaUsuarios[msg.sender];
     }
 }
