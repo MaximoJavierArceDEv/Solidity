@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity 0.8.26;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -17,7 +17,7 @@ contract Staking {
     }
 
     IERC20 public immutable token; // El token que se está stakeando
-    uint256 public constant YEAR = 365 days; // Definición de un año en segundos
+    uint constant YEAR = 365 * 24 * 60 * 60; // un año en segundos 
     address public owner; // Dirección del propietario del contrato
 
     mapping(address => Stake) public stakes; // Mapeo para almacenar los stakes de cada usuario
@@ -98,7 +98,7 @@ contract Staking {
             "No se ha podido transferir tus recompensas"
         );
 
-        // userStake.startTime = block.timestamp; // Reiniciar el tiempo de staking
+       // userStake.startTime = block.timestamp; // Reiniciar el tiempo de staking
     }
 
     /**
